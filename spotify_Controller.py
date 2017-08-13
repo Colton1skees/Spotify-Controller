@@ -22,6 +22,7 @@ curr_volume = properties_manager.Get('org.mpris.MediaPlayer2.Player', 'Metadata'
 
 info = [curr_volume["xesam:title"], curr_volume["xesam:albumArtist"]]
 
+# Desktop notification functions
 def nextNotify():
     nextNotify=Notify.Notification.new("Skipped Song:", "Click Previous To Go Back: BROKEN", "dialog-information")
     nextNotify.show()
