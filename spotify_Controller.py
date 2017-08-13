@@ -12,6 +12,7 @@ from PyQt4.QtWebKit import QWebView
 gi.require_version('Notify', '0.7')
 from gi.repository import Notify
 Notify.init("Hello world")
+import threading
 
 player = dbus.SessionBus().get_object('org.mpris.MediaPlayer2.spotify', '/org/mpris/MediaPlayer2')
 properties_manager = dbus.Interface(player, 'org.freedesktop.DBus.Properties')
@@ -41,11 +42,6 @@ def infoNotify():
     infoNotify=Notify.Notification.new(" Song info:", "Title: " + info[0] + " - " + info[1][0], "dialog-information")
     infoNotify.show()
 
-
-
-
-
-
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -70,17 +66,11 @@ def commander (self, arg):
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
 
-
-
-
-
         #Button clicked functions
 
         def on_button1_clicked():
             test()
-
-
-
+            
         def on_button2_clicked():
             player.Previous(dbus_interface='org.mpris.MediaPlayer2.Player')
             previousNotify()
@@ -128,19 +118,11 @@ class Ui_MainWindow(object):
 
         #Button clicked actions
 
-
-
         self.pushButton.clicked.connect(lambda: commander(on_button1_clicked()))
         self.pushButton_2.clicked.connect(lambda: commander(on_button2_clicked()))
         self.pushButton_3.clicked.connect(lambda: commander(on_button3_clicked()))
         self.pushButton_4.clicked.connect(lambda: commander(on_button4_clicked()))
         self.pushButton_5.clicked.connect(lambda: commander(on_button5_clicked()))
-
-        import threading
-
-
-
-
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -153,9 +135,6 @@ class Ui_MainWindow(object):
         self.pushButton_4.setText(_translate("MainWindow", "Pause", None))
         self.pushButton_5.setText(_translate("MainWindow", "Info", None))
         self.pushButton_3.setText(_translate("MainWindow", "Play", None))
-
-
-
 
 from PyQt4 import QtWebKit
 
